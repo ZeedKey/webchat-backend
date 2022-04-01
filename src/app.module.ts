@@ -19,6 +19,12 @@ import { MessageModule } from './message/message.module';
       database: process.env.POSTGRES_DB,
       models: [User, Message],
       autoLoadModels: true,
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      }
     }),
     UserModule,
     MessageModule,
