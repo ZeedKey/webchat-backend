@@ -12,16 +12,16 @@ import { MessageModule } from './message/message.module';
     ConfigModule.forRoot({ envFilePath: '.env' }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: process.env.POSTGRES_HOST,
+      host: process.env.POSTGRES_HOST || "3000",
       port: Number(process.env.POSTGRES_PORT),
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       models: [User, Message],
       autoLoadModels: true,
+      synchronize: true,
       dialectOptions: {
         ssl: {
-          require: true,
           rejectUnauthorized: false,
         },
       }
